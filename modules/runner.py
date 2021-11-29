@@ -354,9 +354,8 @@ class Runner:
         # Initialize model
 
         # Set model
-        weights = torchvision.prototype.models.ResNet50Weights.ImageNet1K_RefV2
-        self.model = torchvision.prototype.models.resnet50(weights=weights)
-        '''
+        # weights = torchvision.prototype.models.ResNet50Weights.ImageNet1K_RefV2
+        # self.model = torchvision.prototype.models.resnet50(weights=weights)
         self.model = torch_model(
             self.cfg.model.arch,
             self.cfg.data.classes,
@@ -364,7 +363,6 @@ class Runner:
             log,
             module_name=self.cfg.model.module,
         )
-        '''
         self.model = self.model.to(self.device)
 
         # Set optimizer
