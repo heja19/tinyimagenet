@@ -9,6 +9,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torchvision
+from torchvision.models import resnet
 from omegaconf import DictConfig
 from torch.nn.modules import loss
 from torch.utils.data import DataLoader
@@ -354,8 +355,11 @@ class Runner:
         # Initialize model
 
         # Set model
-        weights = torchvision.prototype.models.ResNet50Weights.ImageNet1K_RefV2
-        self.model = torchvision.prototype.models.resnet50(weights=weights)
+        # Overwrite the URL of the previous weights
+        resnet.model_urls["resnet50"] = "https://download.pytorch.org/models/resnet50-f46c3f97.pth"
+   
+        # Initialize the model using the legacy API
+        self.model = resnet.resnet50(pretrained=True)
         '''self.model = torch_model(
             self.cfg.model.arch,
             self.cfg.data.classes,
