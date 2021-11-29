@@ -13,6 +13,7 @@ from omegaconf import DictConfig
 from torch.nn.modules import loss
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
+from torchvision import prototype as P
 from tqdm import tqdm
 
 from modules import models
@@ -351,8 +352,12 @@ class Runner:
             torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
         )
         self.log.info(f"Using device={self.device}")
+        # Initialize model
 
         # Set model
+        weights = P.models.ResNet50Weights.ImageNet1K_RefV2
+        self.model = P.models.resnet50(weights=weights)
+        '''
         self.model = torch_model(
             self.cfg.model.arch,
             self.cfg.data.classes,
@@ -360,6 +365,7 @@ class Runner:
             log,
             module_name=self.cfg.model.module,
         )
+        '''
         self.model = self.model.to(self.device)
 
         # Set optimizer
