@@ -356,7 +356,7 @@ class Runner:
         # Set model
         weights = torchvision.prototype.models.ResNet50Weights.ImageNet1K_RefV2
         self.model = torchvision.prototype.models.resnet50(weights=weights)
-        ''self.model = torch_model(
+        '''self.model = torch_model(
             self.cfg.model.arch,
             self.cfg.data.classes,
             self.cfg.model.pretrained,
