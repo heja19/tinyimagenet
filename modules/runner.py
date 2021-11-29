@@ -13,7 +13,6 @@ from omegaconf import DictConfig
 from torch.nn.modules import loss
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from torchvision import prototype as P
 from tqdm import tqdm
 
 from modules import models
@@ -355,8 +354,8 @@ class Runner:
         # Initialize model
 
         # Set model
-        weights = P.models.ResNet50Weights.ImageNet1K_RefV2
-        self.model = P.models.resnet50(weights=weights)
+        weights = torchvision.prototype.models.ResNet50Weights.ImageNet1K_RefV2
+        self.model = torchvision.prototype.models.resnet50(weights=weights)
         '''
         self.model = torch_model(
             self.cfg.model.arch,
